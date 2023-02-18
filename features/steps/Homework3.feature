@@ -7,3 +7,8 @@ Feature: Homework 3
     When Click on Orders
     Then Sign-in header is visible
     Then Input Field is Present
+
+    Scenario: Logged-out user clicks on Cart Icon and sees Amazon Cart Empty
+      Given Open Amazon page
+      When Click on Cart icon
+      Then Cart is empty

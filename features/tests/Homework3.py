@@ -40,14 +40,8 @@
 # 2. Update a test case to verify that logged-out user sees Sign In when clicking Returns and Orders
 # to use Behave (BDD)
 
-from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
 from behave import given, when, then
-
-driver = webdriver.Chrome(executable_path='/Users/eduar/Automation/python-selenium-automation/chromedriver')
-service = Service('/Users/eduar/Automation/python-selenium-automation/chromedriver')
-driver = webdriver.Chrome(service=service)
 
 # Open Amazon Home Page
 
@@ -78,3 +72,27 @@ def verify_input_field(context):
     expected_result_2 = '"Email Input Field Present"'
     actual_result_2 = context.driver.find_element(By.XPATH, "//input[@type='email']").text
     assert expected_result_2 == actual_result_2, f'Expected {expected_result_2} but got actual {actual_result_2}'
+
+# 3.  Create a test case using BDD that opens amazon.com
+# clicks on the cart icon and verifies that Your Amazon Cart is empty.
+
+
+@given('Open Amazon page')
+def open_amazon(context):
+    context.driver.get('https://www.amazon.com/')
+
+# Find Cart Icon > Click
+
+
+@when('Click on Cart icon')
+def orders_click(context):
+    context.driver.find_element(By.ID, 'nav-cart-count').click()
+
+
+# Verification - Cart is empty
+@then('Cart is Empty')
+def empty_cart(context):
+    context.driver.find_element(By.CSS_SELECTOR, "span.nav-cart-0")
+    expected_result_3 = '"Empty Amazon Cart"'
+    actual_result_3 = context.driver.find_element(By.CSS_SELECTOR, "span.nav-cart-0").text
+    assert expected_result_3 == actual_result_3, f'Expected {expected_result_3} but got actual {actual_result_3}'
