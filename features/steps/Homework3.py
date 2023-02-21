@@ -55,7 +55,7 @@ def open_amazon(context):
 
 @when('Click on Orders')
 def orders_click(context):
-    context.driver.find_element(By.XPATH, "//span[@class='nav-line-2']").click()
+    context.driver.find_element(By.XPATH, "//a[@id='nav-orders']").click()
 
 # Verification: Sign-In page Opened (Sign In Page Header is visible / Email Input Field is present)
 
@@ -69,7 +69,8 @@ def verify_signin_header(context):
 
 @then('Input Field is Present')
 def verify_input_field(context):
-    context.driver.find_element(By.ID, 'ap_email')
+    email = context.driver.find_element(By.ID, 'ap_email')
+    assert email, f"Expecting Email Field but could not find the field"
 
 # 3.  Create a test case using BDD that opens amazon.com
 # clicks on the cart icon and verifies that Your Amazon Cart is empty.
@@ -90,6 +91,6 @@ def orders_click(context):
 @then('Cart is Empty')
 def empty_cart(context):
     context.driver.find_element(By.CSS_SELECTOR, "span.nav-cart-0")
-    expected_result_3 = 'Your Amazon Cart is empty.'
+    expected_result_3 = '0'
     actual_result_3 = context.driver.find_element(By.CSS_SELECTOR, "span.nav-cart-0").text
     assert expected_result_3 == actual_result_3, f'Expected {expected_result_3} but got actual {actual_result_3}'
