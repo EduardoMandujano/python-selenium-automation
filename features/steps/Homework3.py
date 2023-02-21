@@ -50,8 +50,8 @@ from behave import given, when, then
 def open_amazon(context):
     context.driver.get('https://www.amazon.com/')
 
-
 # Find Returns and Orders > Click
+
 
 @when('Click on Orders')
 def orders_click(context):
@@ -62,28 +62,25 @@ def orders_click(context):
 
 @then('Sign-in header is visible')
 def verify_signin_header(context):
-    expected_result = '"Sign-In Header"'
-    actual_result = context.driver.find_element(By.XPATH, "//h1[@class='a-spacing-small']").text
-    assert expected_result == actual_result, f'Expected {expected_result} but got actual {actual_result}'
+    expected_text = 'Sign in'
+    actual_text = context.driver.find_element(By.XPATH, "//h1[@class='a-spacing-small']").text
+    assert actual_text == expected_text, f'Expected {expected_text} but got actual {actual_text}'
 
 
 @then('Input Field is Present')
 def verify_input_field(context):
-    expected_result_2 = '"Email Input Field Present"'
-    actual_result_2 = context.driver.find_element(By.XPATH, "//input[@type='email']").text
-    assert expected_result_2 == actual_result_2, f'Expected {expected_result_2} but got actual {actual_result_2}'
+    context.driver.find_element(By.ID, 'ap_email')
 
 # 3.  Create a test case using BDD that opens amazon.com
 # clicks on the cart icon and verifies that Your Amazon Cart is empty.
 
 
-@given('Open Amazon page')
-def open_amazon(context):
-    context.driver.get('https://www.amazon.com/')
+# @given('Open Amazon page')
+# def open_amazon(context):
+    # context.driver.get('https://www.amazon.com/')
+
 
 # Find Cart Icon > Click
-
-
 @when('Click on Cart icon')
 def orders_click(context):
     context.driver.find_element(By.ID, 'nav-cart-count').click()
@@ -93,6 +90,6 @@ def orders_click(context):
 @then('Cart is Empty')
 def empty_cart(context):
     context.driver.find_element(By.CSS_SELECTOR, "span.nav-cart-0")
-    expected_result_3 = '"Empty Amazon Cart"'
+    expected_result_3 = 'Your Amazon Cart is empty.'
     actual_result_3 = context.driver.find_element(By.CSS_SELECTOR, "span.nav-cart-0").text
     assert expected_result_3 == actual_result_3, f'Expected {expected_result_3} but got actual {actual_result_3}'
