@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from behave import given, when, then
-from time import sleep
+# from time import sleep HW5 - Commenting out in favor of the Implicit Wait in environment.py
+
 
 
 SEARCH_INPUT = (By.NAME, 'q')
@@ -17,13 +18,13 @@ def input_search(context, search_word):
     search = context.driver.find_element(*SEARCH_INPUT)
     search.clear()
     search.send_keys(search_word)
-    sleep(4)
+    # sleep(4) HW5 - Commenting out in favor of the Implicit Wait in environment.py
 
 
 @when('Click on search icon')
 def click_search_icon(context):
     context.driver.find_element(*SEARCH_SUBMIT).click()
-    sleep(1)
+    # sleep(1) HW5 - Commenting out in favor of the Implicit Wait in environment.py
 
 
 @then('Product results for {search_word} are shown')
