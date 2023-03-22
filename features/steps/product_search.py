@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from behave import given, when, then
 # from time import sleep HW5 - Commenting out in favor of the Implicit Wait in environment.py
+from pages.base_page import Page
 
 
 

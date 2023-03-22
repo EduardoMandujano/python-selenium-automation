@@ -1,6 +1,6 @@
 # Created by Eduardo at 2/17/2023
 Feature: Homework 3
-  BDD Practice Re-written with Page Object Pattern
+  BDD Practice Re-written with Page Object Pattern for HW7
 
   Scenario: Logged-out user sees Sign In when clicking on Returns and Orders
     Given Open Amazon page
